@@ -1,0 +1,22 @@
+-
+    name: 'Execute a script on all web server nodes'
+    hosts: dev
+    become: true
+    become_user: root
+    tasks:
+        -
+          name: Install Apache web server
+          package:
+            name: httpd
+            state: present
+        -
+          name: 'Update the playbook to start httpd service'
+          service:
+            name: httpd
+            state: started
+        -
+          name: copying file
+          copy: 
+            src: ./index.html
+            dest: /var/www/html/index.html
+            

@@ -1,0 +1,19 @@
+---
+- name: Execute test 8
+  hosts: qa
+  vars:
+    system: "Windows"
+    color: "Red"
+  tasks: 
+    # - debug: var=hostvars
+    - debug: var=ansible_system
+    - debug: var=color
+      when: system == 'Linux'
+    - debug: var=item.country
+      with_items:
+        - name: Kunle
+          country: Nigeria
+        - name: Peter
+          country: USA
+        - name: Abena
+          country: Ghana

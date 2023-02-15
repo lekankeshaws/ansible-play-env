@@ -1,0 +1,12 @@
+-
+  name: Copying to remote Servers
+  hosts: all
+  tasks:
+    - name: copying file
+      copy: 
+        src: ./test_file.txt
+        dest: /tmp/test_file.txt
+      register: copy_result
+    - debug: msg="{{ copy_result }}"
+    - name: Execute a cat Command
+      command: cat /tmp/test_file.txt
